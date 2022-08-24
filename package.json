@@ -1,0 +1,90 @@
+{
+  "name": "pixel-art-maker",
+  "description": "A tool for making pixel art.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "start": "node bin/serve_dev.mjs",
+    "build": "bin/build.sh",
+    "build:dev": "npm run build -- dev",
+    "build:prod": "npm run build -- prod",
+    "format": "prettier -w '**/*.{js,jsx,ts,tsx}'",
+    "lint": "eslint ./",
+    "lint:fix": "npm run lint -- --fix",
+    "prep": "npm run format && npm run lint:fix",
+    "prettier": "prettier -l '**/*.{js,jsx,ts,tsx}'",
+    "test": "jest",
+    "tsc:watch": "tsc --watch",
+    "validate": "bin/validate.sh"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "src/(.*)": "<rootDir>/src/$1"
+    },
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "testEnvironment": "jsdom"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.6.6",
+    "@heroicons/react": "^1.0.6",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^28.1.7",
+    "@types/node": "^18.7.8",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "chalk": "^5.0.1",
+    "classnames": "^2.3.1",
+    "esbuild": "^0.15.5",
+    "fp-ts": "^2.12.2",
+    "newtype-ts": "^0.3.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.2",
+    "typescript": "~4.7.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/parser": "^5.33.1",
+    "babel-jest": "^28.1.3",
+    "babel-loader": "^8.2.5",
+    "browser-sync": "^2.27.10",
+    "chokidar": "^3.5.3",
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "jest": "^28.1.3",
+    "jest-environment-jsdom": "^28.1.3",
+    "prettier": "^2.7.1",
+    "react-test-renderer": "^18.2.0",
+    "tailwindcss": "^3.1.8"
+  }
+}

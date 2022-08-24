@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-recess-order"
+  ],
+  "plugins": [
+    "stylelint-order"
+  ],
+  "rules": {
+    "order/order": [
+      "custom-properties",
+      "declarations"
+    ],
+    "order/properties-alphabetical-order": null,
+    "property-case": null,
+    "selector-class-pattern": null,
+    "selector-max-id": null,
+    "selector-max-compound-selectors": 5,
+    "max-nesting-depth": 3,
+    "max-line-length": null,
+    "max-empty-lines": null,
+    "at-rule-no-unknown": null,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": [
+          "global",
+          "export"
+        ]
+      }
+    ]
+  }
+}
