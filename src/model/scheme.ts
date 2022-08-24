@@ -1,6 +1,6 @@
 import { NEA } from "fpts"
 
-import * as Color from "./color"
+import { Color } from "./index"
 
 export type Scheme = NEA.NonEmptyArray<Color.Color>
 

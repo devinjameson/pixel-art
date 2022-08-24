@@ -1,10 +1,7 @@
 import { FC, useState } from "react"
 import { A, NEA, O } from "fpts"
 
-import * as Cell from "model/cell"
-import * as Fill from "model/fill"
-import * as Grid from "model/grid"
-import * as Scheme from "model/scheme"
+import { Cell, Fill, Grid, Scheme } from "model"
 
 import ColorPicker from "./ColorPicker"
 import GridView from "./GridView"

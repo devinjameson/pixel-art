@@ -2,9 +2,7 @@ import { FC } from "react"
 import cn from "classnames"
 import { A, F, O } from "fpts"
 
-import * as Color from "model/color"
-import * as Fill from "model/fill"
-import * as Scheme from "model/scheme"
+import { Color, Fill, Scheme } from "model"
 
 type ColorPickerProps = {
   scheme: Scheme.Scheme

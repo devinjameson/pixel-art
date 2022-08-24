@@ -1,9 +1,7 @@
 import { FC } from "react"
 import { A, F, O } from "fpts"
 
-import * as Cell from "model/cell"
-import * as Color from "model/color"
-import * as Grid from "model/grid"
+import { Cell, Color, Grid } from "model"
 
 type GridViewProps = {
   grid: Grid.Grid
@@ -70,7 +68,7 @@ const CellView: FC<CellViewProps> = ({
           () => <></>,
           color => (
             <div
-              style={{ backgroundColor: Color.isoColor.unwrap(color) }}
+              style={{ backgroundColor: Color.toString(color) }}
               className="w-full h-full"
             />
           ),

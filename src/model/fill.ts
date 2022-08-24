@@ -1,5 +1,5 @@
 import { O } from "fpts"
 
-import * as Color from "./color"
+import { Color } from "./index"
 
 export type Fill = O.Option<Color.Color>

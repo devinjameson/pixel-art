@@ -1,7 +1,6 @@
 import { A, F } from "fpts"
 
-import * as Cell from "./cell"
-import * as Fill from "./fill"
+import { Cell, Fill } from "./index"
 
 export type Row = Cell.Cell[]
 
