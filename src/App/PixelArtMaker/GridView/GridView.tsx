@@ -1,7 +1,5 @@
 import { FC } from "react"
-import * as A from "fp-ts/Array"
-import * as F from "fp-ts/function"
-import * as O from "fp-ts/Option"
+import { A, F, O } from "fpts"
 
 import * as Cell from "model/cell"
 import * as Color from "model/color"

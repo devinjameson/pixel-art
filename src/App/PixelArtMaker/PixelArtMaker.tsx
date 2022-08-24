@@ -1,7 +1,5 @@
 import { FC, useState } from "react"
-import * as A from "fp-ts/Array"
-import * as NEA from "fp-ts/NonEmptyArray"
-import * as O from "fp-ts/Option"
+import { A, NEA, O } from "fpts"
 
 import * as Cell from "model/cell"
 import * as Fill from "model/fill"

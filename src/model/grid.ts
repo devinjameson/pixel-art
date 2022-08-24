@@ -1,5 +1,4 @@
-import * as A from "fp-ts/Array"
-import * as F from "fp-ts/function"
+import { A, F } from "fpts"
 
 import * as Cell from "./cell"
 import * as Fill from "./fill"

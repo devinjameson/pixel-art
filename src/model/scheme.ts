@@ -1,4 +1,4 @@
-import * as NEA from "fp-ts/NonEmptyArray"
+import { NEA } from "fpts"
 
 import * as Color from "./color"
 

@@ -1,8 +1,6 @@
 import { FC } from "react"
 import cn from "classnames"
-import * as A from "fp-ts/Array"
-import * as F from "fp-ts/function"
-import * as O from "fp-ts/Option"
+import { A, F, O } from "fpts"
 
 import * as Color from "model/color"
 import * as Fill from "model/fill"
