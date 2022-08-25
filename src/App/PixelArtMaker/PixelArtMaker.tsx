@@ -57,7 +57,7 @@ const PixelArtMaker: FC = () => {
 
       <a
         className="mt-8 text-blue-600 underline"
-        href="https://github.com/devinjameson/pixel-art-maker"
+        href="https://github.com/devinjameson/pixel-art"
       >
         The code for this project is open source and you can see it all here.
       </a>
