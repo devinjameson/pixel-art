@@ -1,12 +1,12 @@
 import { FC, useState } from "react"
-import { A, NEA, O } from "fpts"
+import { A, O } from "fpts"
 
 import { Cell, Fill, Grid, Scheme } from "model"
 
-import ColorPicker from "./ColorPicker"
+import ColorPickers from "./ColorPickers"
 import GridView from "./GridView"
 
-const GRID_SIZE = 20
+const GRID_SIZE = 26
 
 export const buildInitialGrid = ({
   rowsCount,
@@ -22,33 +22,38 @@ const PixelArtMaker: FC = () => {
   const [grid, setGrid] = useState<Grid.Grid>(
     buildInitialGrid({ rowsCount: GRID_SIZE, columnsCount: GRID_SIZE }),
   )
-  const [scheme, _] = useState<Scheme.Scheme>(Scheme.schemeA)
-  const [activeFill, setActiveFill] = useState<Fill.Fill>(
-    O.some(NEA.head(scheme)),
-  )
+  const [scheme, setScheme] = useState<Scheme.Scheme>(Scheme.schemeA)
+  const [activeFill, setActiveFill] = useState<Fill.Fill>(O.some("C1"))
 
   const handleOnClickCell = (location: Grid.Location): void => {
     const nextGrid = Grid.buildNext(location)(activeFill)(grid)
     setGrid(nextGrid)
   }
 
-  const handleOnChangeActiveFill = (fill: Fill.Fill): void => {
-    setActiveFill(fill)
+  const handleOnChangeActiveFill = (nextActiveFill: Fill.Fill): void => {
+    setActiveFill(nextActiveFill)
+  }
+
+  const handleOnChangeScheme = (nextScheme: Scheme.Scheme): void => {
+    setScheme(nextScheme)
   }
 
   return (
-    <div className="m-4 space-y-4">
-      <h1 className="font-medium">Pixel Art Maker</h1>
+    <div className="flex flex-col items-center m-4">
+      <h1 className="mb-4 text-xl font-medium">Pixel Art Maker</h1>
 
-      <GridView onClickCell={handleOnClickCell} grid={grid} />
+      <GridView onClickCell={handleOnClickCell} grid={grid} scheme={scheme} />
 
-      <ColorPicker
-        scheme={scheme}
-        activeFill={activeFill}
-        onChangeActiveFill={handleOnChangeActiveFill}
-      />
+      <div className="mt-8">
+        <ColorPickers
+          scheme={scheme}
+          activeFill={activeFill}
+          onChangeActiveFill={handleOnChangeActiveFill}
+          onChangeScheme={handleOnChangeScheme}
+        />
+      </div>
 
-      <div className="pt-4">
+      <div className="pt-12">
         <a
           className="mt-8 text-blue-600 underline"
           href="https://github.com/devinjameson/pixel-art-maker"
