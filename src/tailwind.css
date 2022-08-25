@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  button {
+    @apply transition-all;
+  }
+
   button:disabled {
-    @apply opacity-50;
+    @apply opacity-30;
   }
 }

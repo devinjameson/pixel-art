@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, MouseEventHandler } from "react"
 import { F, O } from "fpts"
 import { Icon } from "heroIcon"
 
@@ -20,11 +20,11 @@ const ColorPickers: FC<ColorPickersProps> = ({
 }) => {
   const onChangeIfIsSome = O.match(F.constVoid, onChangeScheme)
 
-  const handleOnClickPrevious = (): void => {
+  const handleOnClickPrevious: MouseEventHandler<HTMLButtonElement> = () => {
     F.pipe(scheme, Scheme.getPrior, onChangeIfIsSome)
   }
 
-  const handleOnClickNext = (): void => {
+  const handleOnClickNext: MouseEventHandler<HTMLButtonElement> = () => {
     F.pipe(scheme, Scheme.getFollowing, onChangeIfIsSome)
   }
 
@@ -33,16 +33,14 @@ const ColorPickers: FC<ColorPickersProps> = ({
   const isNextDisabled = Scheme.isLast(scheme)
 
   return (
-    <div className="flex justify-center space-x-4">
+    <div className="flex items-center justify-center space-x-8">
       <button
         type="button"
         onClick={handleOnClickPrevious}
-        className="w-8 h-8 text-gray-600"
+        className="w-8 h-8 text-gray-500"
         disabled={isPreviousDisabled}
       >
-        {!isPreviousDisabled && (
-          <Icon.Solid.ArrowLeftIcon className="w-8 h-8" />
-        )}
+        <Icon.Solid.ArrowCircleLeftIcon className="w-8 h-8" />
       </button>
 
       <ColorPicker
@@ -54,10 +52,10 @@ const ColorPickers: FC<ColorPickersProps> = ({
       <button
         type="button"
         onClick={handleOnClickNext}
-        className="w-8 h-8 text-gray-600"
+        className="w-8 h-8 text-gray-500"
         disabled={isNextDisabled}
       >
-        {!isNextDisabled && <Icon.Solid.ArrowRightIcon className="w-8 h-8" />}
+        <Icon.Solid.ArrowCircleRightIcon className="w-8 h-8" />
       </button>
     </div>
   )

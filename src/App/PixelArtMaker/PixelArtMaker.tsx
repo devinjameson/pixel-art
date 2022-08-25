@@ -6,7 +6,7 @@ import { Cell, Fill, Grid, Scheme } from "model"
 import ColorPickers from "./ColorPickers"
 import GridView from "./GridView"
 
-const GRID_SIZE = 26
+const GRID_SIZE = 30
 
 export const buildInitialGrid = ({
   rowsCount,
@@ -25,7 +25,7 @@ const PixelArtMaker: FC = () => {
   const [scheme, setScheme] = useState<Scheme.Scheme>(Scheme.schemeA)
   const [activeFill, setActiveFill] = useState<Fill.Fill>(O.some("C1"))
 
-  const handleOnClickCell = (location: Grid.Location): void => {
+  const handleOnFillCell = (location: Grid.Location): void => {
     const nextGrid = Grid.buildNext(location)(activeFill)(grid)
     setGrid(nextGrid)
   }
@@ -40,11 +40,13 @@ const PixelArtMaker: FC = () => {
 
   return (
     <div className="flex flex-col items-center m-4">
-      <h1 className="mb-4 text-xl font-medium">Pixel Art Maker</h1>
+      <h1 className="mb-4 text-xl font-semibold">Pixel Art Maker</h1>
 
-      <GridView onClickCell={handleOnClickCell} grid={grid} scheme={scheme} />
+      <div className="mb-8">
+        <GridView onFillCell={handleOnFillCell} grid={grid} scheme={scheme} />
+      </div>
 
-      <div className="mt-8">
+      <div className="mb-8">
         <ColorPickers
           scheme={scheme}
           activeFill={activeFill}
@@ -53,14 +55,12 @@ const PixelArtMaker: FC = () => {
         />
       </div>
 
-      <div className="pt-12">
-        <a
-          className="mt-8 text-blue-600 underline"
-          href="https://github.com/devinjameson/pixel-art-maker"
-        >
-          The code for this project is open source and you can see it all here.
-        </a>
-      </div>
+      <a
+        className="mt-8 text-blue-600 underline"
+        href="https://github.com/devinjameson/pixel-art-maker"
+      >
+        The code for this project is open source and you can see it all here.
+      </a>
     </div>
   )
 }

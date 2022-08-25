@@ -5,11 +5,11 @@ import { Cell, Grid, Scheme } from "model"
 
 type GridViewProps = {
   grid: Grid.Grid
-  onClickCell: (location: Grid.Location) => void
+  onFillCell: (location: Grid.Location) => void
   scheme: Scheme.Scheme
 }
-const GridView: FC<GridViewProps> = ({ grid, onClickCell, scheme }) => (
-  <div className="flex border border-gray-300">
+const GridView: FC<GridViewProps> = ({ grid, onFillCell, scheme }) => (
+  <div className="flex w-[80vw] max-w-[40rem] h-48 border border-gray-300 h-[80vw] max-h-[40rem]">
     {F.pipe(
       grid,
       A.mapWithIndex((i: number, row) => (
@@ -17,7 +17,7 @@ const GridView: FC<GridViewProps> = ({ grid, onClickCell, scheme }) => (
           key={i}
           rowNumber={i}
           row={row}
-          onClickCell={onClickCell}
+          onFillCell={onFillCell}
           scheme={scheme}
         />
       )),
@@ -28,11 +28,11 @@ const GridView: FC<GridViewProps> = ({ grid, onClickCell, scheme }) => (
 type RowViewProps = {
   row: Grid.Row
   rowNumber: number
-  onClickCell: (location: Grid.Location) => void
+  onFillCell: (location: Grid.Location) => void
   scheme: Scheme.Scheme
 }
-const RowView: FC<RowViewProps> = ({ row, rowNumber, onClickCell, scheme }) => (
-  <div className="flex flex-col">
+const RowView: FC<RowViewProps> = ({ row, rowNumber, onFillCell, scheme }) => (
+  <div className="flex flex-col flex-1">
     {F.pipe(
       row,
       A.mapWithIndex((i: number, cell) => (
@@ -41,7 +41,7 @@ const RowView: FC<RowViewProps> = ({ row, rowNumber, onClickCell, scheme }) => (
           rowNumber={rowNumber}
           columnNumber={i}
           cell={cell}
-          onClick={onClickCell}
+          onFill={onFillCell}
           scheme={scheme}
         />
       )),
@@ -57,33 +57,27 @@ type CellViewProps = {
   cell: Cell.Cell
   rowNumber: number
   columnNumber: number
-  onClick: (location: Grid.Location) => void
+  onFill: (location: Grid.Location) => void
   scheme: Scheme.Scheme
 }
 const CellView: FC<CellViewProps> = ({
   cell: { fill },
   rowNumber,
   columnNumber,
-  onClick,
+  onFill,
   scheme,
 }) => {
-  const handleOnMouseOver: MouseEventHandler<HTMLButtonElement> = F.flow(
+  const handleOnMouseDownOrOver: MouseEventHandler<HTMLButtonElement> = F.flow(
     isLeftClick,
-    B.match(F.constVoid, () => onClick({ rowNumber, columnNumber })),
+    B.match(F.constVoid, () => onFill({ rowNumber, columnNumber })),
   )
-
-  const handleOnClick: MouseEventHandler<HTMLButtonElement> = () =>
-    onClick({
-      rowNumber,
-      columnNumber,
-    })
 
   return (
     <button
       type="button"
-      onMouseOver={handleOnMouseOver}
-      onClick={handleOnClick}
-      className="flex w-6 h-6"
+      onMouseOver={handleOnMouseDownOrOver}
+      onMouseDown={handleOnMouseDownOrOver}
+      className="flex flex-1"
     >
       {F.pipe(
         fill,

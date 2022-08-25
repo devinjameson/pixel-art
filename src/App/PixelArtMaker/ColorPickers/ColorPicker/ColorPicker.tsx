@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, MouseEventHandler } from "react"
 import cn from "classnames"
 import { A, F, O, R } from "fpts"
 
@@ -50,7 +50,7 @@ const ColorButton: FC<ColorButtonProps> = ({
   activeFill,
   onChangeActiveFill,
 }) => {
-  const handleOnClick = (): void => {
+  const handleOnClick: MouseEventHandler<HTMLButtonElement> = () => {
     onChangeActiveFill(O.some(colorKey))
   }
 
@@ -60,8 +60,8 @@ const ColorButton: FC<ColorButtonProps> = ({
   )
 
   const className = cn(
-    "w-8 h-8 rounded-sm transition-all",
-    isActive && "shadow-xl scale-[125%]",
+    "w-6 h-6 rounded-sm",
+    isActive && "scale-[135%] drop-shadow-xl",
   )
 
   return (
@@ -89,8 +89,8 @@ const EraserButton: FC<EraserButtonProps> = ({
   const isActive = O.isNone(activeFill)
 
   const className = cn(
-    "w-8 h-8 rounded-sm transition-all border border-gray-300",
-    isActive && "scale-[125%] shadow-xl",
+    "w-6 h-6 rounded-sm border border-gray-300",
+    isActive && "scale-[135%] drop-shadow-xl",
   )
 
   return <button type="button" onClick={handleOnClick} className={className} />
