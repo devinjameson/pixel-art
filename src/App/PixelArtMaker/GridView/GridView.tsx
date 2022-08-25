@@ -89,10 +89,10 @@ const CellView: FC<CellViewProps> = ({
         fill,
         O.match(F.constNull, colorKey => (
           <div
+            className="w-full h-full transition-colors"
             style={{
               backgroundColor: Scheme.getColorStringByKey(scheme, colorKey),
             }}
-            className="w-full h-full"
           />
         )),
       )}
