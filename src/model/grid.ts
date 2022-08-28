@@ -1,4 +1,4 @@
-import { A, F } from "fpts"
+import { A, B, F } from "fpts"
 
 import { Cell, Fill } from "./index"
 
@@ -29,19 +29,28 @@ const buildNextRow =
   (locationOfCellToUpdate: Location) =>
   (activeFill: Fill.Fill) =>
   (rowIdx: number, row: Row): Row =>
-    rowIdx === locationOfCellToUpdate.rowNumber
-      ? F.pipe(
-          row,
-          A.mapWithIndex(
-            buildNextCell(locationOfCellToUpdate.columnNumber)(activeFill),
+    F.pipe(
+      rowIdx === locationOfCellToUpdate.rowNumber,
+      B.match(
+        () => row,
+        () =>
+          F.pipe(
+            row,
+            A.mapWithIndex(
+              buildNextCell(locationOfCellToUpdate.columnNumber)(activeFill),
+            ),
           ),
-        )
-      : row
+      ),
+    )
 
 const buildNextCell =
   (columnNumberOfCellToUpdate: number) =>
   (activeFill: Fill.Fill) =>
   (columnIdx: number, cell: Cell.Cell): Cell.Cell =>
-    columnIdx === columnNumberOfCellToUpdate
-      ? { ...cell, fill: activeFill }
-      : cell
+    F.pipe(
+      columnIdx === columnNumberOfCellToUpdate,
+      B.match(
+        () => cell,
+        () => ({ ...cell, fill: activeFill }),
+      ),
+    )
